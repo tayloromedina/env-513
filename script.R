@@ -14,12 +14,6 @@ calenviroscreen <- read_excel(here('data', 'calenviroscreen.xlsx')) %>%
   clean_names() %>% # makes names lowercase (easier for R)
   select(!matches('_pctl') & !matches('ces') & !matches('score')) # removes the score and percentile columns, we want raw numbers
 
-# I succeed in implement R and github -Junjia
-library(ggplot2)
-#hi
-
-
-
 # subset data to only numeric
 subsetdata <- calenviroscreen %>% 
   select(!1:7) %>% 
@@ -38,6 +32,14 @@ pca_fit %>%
   geom_point(size = 1.5) 
 
 
- 
+ # SUBSET THE DATA BY GROUPS
+health <- subsetdata %>% 
+  select(15:17)
+
+pollution <- subsetdata %>% 
+  select(1:14)
+
+socioeconomic <- subsetdata %>% 
+  select(18:23)
 
 
